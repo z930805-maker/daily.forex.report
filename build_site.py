@@ -79,7 +79,7 @@ def main():
     print(f"已產生 index.html（內容 = {latest_date} 外匯報表）")
 
     # 3) 產生 history.html
-    dated_files_desc = list(reversed(dated_files))
+    dated_files_desc = list(reversed(dated_files))[:30]
     list_items = "\n".join(
         f'        <li><a href="forex_reports/{os.path.basename(f)}">{d.replace("-", "/")} 外匯市場報表</a></li>'
         for d, f in dated_files_desc
@@ -119,7 +119,7 @@ def main():
   <ul>
 {list_items}
   </ul>
-  <footer>共 {len(dated_files_desc)} 期報表</footer>
+  <footer>顯示近 {len(dated_files_desc)} 期報表</footer>
 </div>
 </body>
 </html>
