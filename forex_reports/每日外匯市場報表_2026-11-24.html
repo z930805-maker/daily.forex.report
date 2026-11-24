@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球外匯市場主要貨幣動態資訊</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0b2447; --navy-light:#13376b; --green:#0e3d2e; --green-light:#155c45;
+    --brown:#3e2416; --brown-light:#5a3620; --up:#c0392b; --dn:#1e8449; --flat:#7f8c8d;
+    --bg:#eef1f6; --card:#ffffff; --border:#e3e7ee; --text:#1b2430; --muted:#6b7686;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .wrap{max-width:1180px;margin:0 auto;padding:20px 16px 44px;}
+
+  .banner{background:linear-gradient(135deg,var(--navy) 0%,#061225 100%);color:#fff;
+    padding:34px 32px;border-radius:16px;box-shadow:0 2px 10px rgba(11,36,71,.25);margin-bottom:26px;}
+  .banner h1{margin:0 0 10px;font-size:34px;font-weight:900;letter-spacing:.5px;}
+  .banner .date{font-family:'IBM Plex Mono',monospace;font-size:17px;opacity:.85;}
+
+  .section{margin-bottom:30px;border-radius:14px;box-shadow:0 1px 5px rgba(0,0,0,.08);}
+  .section-head{padding:16px 22px;color:#fff;font-weight:700;font-size:19px;border-radius:14px 14px 0 0;}
+  .sec1 .section-head, .sec2 .section-head{background:linear-gradient(90deg,var(--navy),var(--navy-light));}
+  .sec3 .section-head{background:linear-gradient(90deg,var(--green),var(--green-light));}
+  .sec4 .section-head{background:linear-gradient(90deg,var(--brown),var(--brown-light));}
+  .sec-line .section-head{background:#2c3440;}
+
+  table{width:100%;border-collapse:collapse;background:var(--card);}
+  th,td{padding:13px 14px;border-bottom:1px solid var(--border);font-size:15.5px;text-align:right;white-space:nowrap;}
+  th{background:#f8f9fb;color:var(--muted);font-weight:600;font-size:14px;}
+  th:first-child,td:first-child{text-align:left;font-weight:600;}
+  tbody tr:nth-child(even){background:#fafbfd;}
+  .up{color:var(--up);font-weight:700;}
+  .dn{color:var(--dn);font-weight:700;}
+  .flat{color:var(--flat);}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x;overscroll-behavior-x:contain;}
+  .scroll.scroll-bottom{border-radius:0 0 14px 14px;}
+  .scroll-hint{display:none;font-size:11.5px;color:var(--muted);text-align:center;padding:6px 0 2px;background:#fbfbfc;}
+  .note{font-size:13.5px;color:var(--muted);padding:15px 20px;background:#fbfbfc;border-top:1px solid var(--border);line-height:1.8;}
+  .section .note{border-radius:0 0 14px 14px;}
+  .footer{text-align:center;font-size:13px;color:var(--muted);padding:22px 0 4px;}
+
+  .line-box{background:var(--card);border-radius:0 0 14px 14px;padding:22px 24px 26px;}
+  .line-box p{margin:0 0 12px;font-size:16px;line-height:1.95;}
+  .line-box .line-content{font-size:16px;line-height:1.95;white-space:normal;}
+
+  @media print{
+    thead{display:table-header-group;}
+    tr{break-inside:avoid;page-break-inside:avoid;}
+    .section-head{break-after:avoid-page;}
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:14px 10px 32px;}
+    .banner{padding:24px 20px;border-radius:12px;}
+    .banner h1{font-size:23px;}
+    .banner .date{font-size:14px;}
+    .section-head{font-size:16px;padding:13px 16px;}
+    .scroll-hint{display:block;}
+    .sec1 .scroll.scroll-bottom{border-radius:0;}
+    .sec1 .scroll-hint{border-radius:0 0 14px 14px;padding-bottom:10px;}
+    th,td{padding:10px 10px;font-size:13.5px;}
+    th{font-size:12.5px;}
+    .line-box p, .line-box .line-content{font-size:14.5px;}
+  }
+
+  .site-nav { max-width: 1100px; margin: 0 auto 18px; display: flex; gap: 16px; font-size: 13px; }
+  .site-nav a { color: #1976d2; text-decoration: none; font-weight: 700; padding: 6px 14px; background: #ffffff; border: 1px solid #bbdefb; border-radius: 4px; }
+  .site-nav a:hover { background: #1976d2; color: #fff; }
+  .site-nav a.active { background: #1976d2; color: #fff; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+<nav class="site-nav"><a href="../index.html">最新報表</a><a href="../history.html">歷史報表</a></nav>
+
+
+    <div class="banner">
+      <h1>全球外匯市場主要貨幣動態資訊</h1>
+      <div class="date">報表日期：2026-11-24（週二）17:30 台北時間 ‧ 即時牌告</div>
+    </div>
+
+    <div class="section sec1">
+      <div class="section-head">1. 匯市：美元基準</div>
+      <div class="scroll scroll-bottom"><table>
+        <thead><tr><th>項目</th><th>今日值</th><th>昨日收盤值</th><th>今日漲跌</th><th>今日漲跌%</th><th>近三月最低點</th><th>vs低點漲跌</th><th>vs低點%</th></tr></thead>
+        <tbody class="mono"><tr><td>美元指數 DXY</td><td>104.24</td><td>104.32</td>
+          <td class="dn">-0.08</td><td class="dn">-0.08%</td>
+          <td>98.56</td><td class="up">+5.68</td><td class="up">+5.76%</td></tr>
+<tr><td>USD/TWD</td><td>32.9370</td><td>32.9546</td>
+          <td class="dn">-0.0176</td><td class="dn">-0.05%</td>
+          <td>31.4162</td><td class="up">+1.5208</td><td class="up">+4.84%</td></tr>
+<tr><td>USD/JPY</td><td>159.336</td><td>158.931</td>
+          <td class="up">+0.405</td><td class="up">+0.25%</td>
+          <td>152.897</td><td class="up">+6.439</td><td class="up">+4.21%</td></tr>
+<tr><td>USD/EUR</td><td>0.9156</td><td>0.9114</td>
+          <td class="up">+0.0042</td><td class="up">+0.46%</td>
+          <td>0.8538</td><td class="up">+0.0618</td><td class="up">+7.23%</td></tr>
+<tr><td>USD/CNY</td><td>6.6636</td><td>6.6770</td>
+          <td class="dn">-0.0134</td><td class="dn">-0.20%</td>
+          <td>6.6480</td><td class="up">+0.0156</td><td class="up">+0.23%</td></tr>
+<tr><td>USD/CHF</td><td>0.8418</td><td>0.8409</td>
+          <td class="up">+0.0009</td><td class="up">+0.11%</td>
+          <td>0.7948</td><td class="up">+0.0470</td><td class="up">+5.91%</td></tr>
+<tr><td>USD/AUD</td><td>1.5078</td><td>1.5058</td>
+          <td class="up">+0.0020</td><td class="up">+0.14%</td>
+          <td>1.3814</td><td class="up">+0.1264</td><td class="up">+9.15%</td></tr>
+<tr><td>USD/NZD</td><td>1.8349</td><td>1.8262</td>
+          <td class="up">+0.0087</td><td class="up">+0.48%</td>
+          <td>1.6697</td><td class="up">+0.1651</td><td class="up">+9.89%</td></tr>
+<tr><td>USD/CAD</td><td>1.4348</td><td>1.4339</td>
+          <td class="up">+0.0009</td><td class="up">+0.06%</td>
+          <td>1.3733</td><td class="up">+0.0615</td><td class="up">+4.48%</td></tr>
+<tr><td>USD/HKD</td><td>7.8413</td><td>7.8400</td>
+          <td class="up">+0.0013</td><td class="up">+0.02%</td>
+          <td>7.8353</td><td class="up">+0.0060</td><td class="up">+0.08%</td></tr>
+<tr><td>USD/THB</td><td>33.910</td><td>34.020</td>
+          <td class="dn">-0.110</td><td class="dn">-0.32%</td>
+          <td>32.574</td><td class="up">+1.336</td><td class="up">+4.10%</td></tr></tbody>
+      </table></div>
+      <div class="scroll-hint">← 左右滑動可看完整欄位 →</div>
+    </div>
+
+    <div class="section sec2">
+      <div class="section-head">2. 匯市：台幣基準</div>
+      <div class="scroll"><table>
+        <thead><tr><th>項目</th><th>今日值</th><th>昨日收盤值</th><th>今日漲跌</th><th>今日漲跌%</th></tr></thead>
+        <tbody class="mono"><tr><td>台幣／美元</td><td>32.9370</td><td>32.9546</td>
+          <td class="dn">-0.0176</td><td class="dn">-0.05%</td></tr>
+<tr><td>台幣／日圓</td><td>0.20671</td><td>0.20735</td>
+          <td class="dn">-0.00064</td><td class="dn">-0.31%</td></tr>
+<tr><td>台幣／歐元</td><td>35.974</td><td>36.158</td>
+          <td class="dn">-0.184</td><td class="dn">-0.51%</td></tr>
+<tr><td>台幣／人民幣</td><td>4.9428</td><td>4.9355</td>
+          <td class="up">+0.0073</td><td class="up">+0.15%</td></tr>
+<tr><td>台幣／瑞士法郎</td><td>39.127</td><td>39.190</td>
+          <td class="dn">-0.063</td><td class="dn">-0.16%</td></tr>
+<tr><td>台幣／澳幣</td><td>21.844</td><td>21.885</td>
+          <td class="dn">-0.041</td><td class="dn">-0.19%</td></tr>
+<tr><td>台幣／紐幣</td><td>17.951</td><td>18.046</td>
+          <td class="dn">-0.095</td><td class="dn">-0.53%</td></tr>
+<tr><td>台幣／加幣</td><td>22.956</td><td>22.982</td>
+          <td class="dn">-0.027</td><td class="dn">-0.12%</td></tr>
+<tr><td>台幣／港幣</td><td>4.2005</td><td>4.2034</td>
+          <td class="dn">-0.0029</td><td class="dn">-0.07%</td></tr>
+<tr><td>台幣／泰銖</td><td>0.9713</td><td>0.9687</td>
+          <td class="up">+0.0026</td><td class="up">+0.27%</td></tr></tbody>
+      </table></div>
+      <div class="scroll-hint">← 左右滑動可看完整欄位 →</div>
+      <div class="note">計算口徑：台幣基準匯率以 USD/TWD 為橋接，透過美元基準各幣別交叉相乘／相除換算得出。近三月低點以目前可取得之公開歷史區間作參考。</div>
+    </div>
+
+    <div class="section sec3">
+      <div class="section-head">3. 來源兆豐銀行：牌告匯率</div>
+      <div class="scroll"><table>
+        <thead><tr><th>幣別</th><th>即期買入</th><th>即期賣出</th><th>即期中價</th><th>昨日中間價(估)</th><th>今日漲跌</th><th>今日漲跌%</th><th>近三月最低(估)</th><th>vs低點漲跌</th><th>vs低點%</th></tr></thead>
+        <tbody class="mono"><tr><td>美元 USD</td><td>32.880</td><td>32.980</td><td>32.930</td>
+          <td>32.955</td><td class="dn">-0.025</td><td class="dn">-0.07%</td>
+          <td>31.416</td><td class="up">+1.514</td><td class="up">+4.82%</td></tr>
+<tr><td>日圓 JPY</td><td>0.2048</td><td>0.2089</td><td>0.2069</td>
+          <td>0.2074</td><td class="dn">-0.0005</td><td class="dn">-0.24%</td>
+          <td>0.2055</td><td class="up">+0.0014</td><td class="up">+0.67%</td></tr>
+<tr><td>港幣 HKD</td><td>4.1730</td><td>4.2330</td><td>4.2030</td>
+          <td>4.2034</td><td class="dn">-0.0004</td><td class="dn">-0.01%</td>
+          <td>4.0096</td><td class="up">+0.1934</td><td class="up">+4.82%</td></tr>
+<tr><td>歐元 EUR</td><td>35.790</td><td>36.190</td><td>35.990</td>
+          <td>36.158</td><td class="dn">-0.168</td><td class="dn">-0.46%</td>
+          <td>36.795</td><td class="dn">-0.805</td><td class="dn">-2.19%</td></tr>
+<tr><td>人民幣 CNY</td><td>4.9180</td><td>4.9680</td><td>4.9430</td>
+          <td>4.9355</td><td class="up">+0.0075</td><td class="up">+0.15%</td>
+          <td>4.7257</td><td class="up">+0.2173</td><td class="up">+4.60%</td></tr>
+<tr><td>英鎊 GBP</td><td>42.830</td><td>43.230</td><td>43.030</td>
+          <td>43.154</td><td class="dn">-0.124</td><td class="dn">-0.29%</td>
+          <td>42.962</td><td class="up">+0.068</td><td class="up">+0.16%</td></tr>
+<tr><td>澳幣 AUD</td><td>21.730</td><td>21.970</td><td>21.850</td>
+          <td>21.885</td><td class="dn">-0.035</td><td class="dn">-0.16%</td>
+          <td>22.742</td><td class="dn">-0.892</td><td class="dn">-3.92%</td></tr>
+<tr><td>泰幣 THB</td><td>0.9510</td><td>0.9930</td><td>0.9720</td>
+          <td>0.9687</td><td class="up">+0.0033</td><td class="up">+0.34%</td>
+          <td>0.9645</td><td class="up">+0.0075</td><td class="up">+0.78%</td></tr>
+<tr><td>加拿大幣 CAD</td><td>22.870</td><td>23.070</td><td>22.970</td>
+          <td>22.982</td><td class="dn">-0.012</td><td class="dn">-0.05%</td>
+          <td>22.876</td><td class="up">+0.094</td><td class="up">+0.41%</td></tr>
+<tr><td>瑞士法郎 CHF</td><td>39.060</td><td>39.260</td><td>39.160</td>
+          <td>39.190</td><td class="dn">-0.030</td><td class="dn">-0.08%</td>
+          <td>39.527</td><td class="dn">-0.367</td><td class="dn">-0.93%</td></tr>
+<tr><td>紐西蘭幣 NZD</td><td>17.860</td><td>18.060</td><td>17.960</td>
+          <td>18.046</td><td class="dn">-0.086</td><td class="dn">-0.48%</td>
+          <td>18.815</td><td class="dn">-0.855</td><td class="dn">-4.55%</td></tr></tbody>
+      </table></div>
+      <div class="scroll-hint">← 左右滑動可看完整欄位 →</div>
+      <div class="note">
+        即期中價 = (即期買入 + 即期賣出) ÷ 2。來源：兆豐國際商業銀行牌告（twrates.com 彙整）；查詢時網頁顯示之最新更新時間為 2026-11-24 17:30（銀行正常營業，牌告為今日即時報價）。<br>
+        「昨日中間價」與「近三月最低」為<strong>估算值</strong>：兆豐銀行未提供可程式化查詢之歷史牌告，故以 Yahoo Finance 歷史資料（USD/TWD 及各幣別 3 個月內最低/最高點）透過 USD/TWD 橋接反推而得，非兆豐銀行官方歷史牌告數字；「近三月最低」為 USD/TWD 與該幣別個別歷史極值之理論組合值（兩者未必發生於同一交易日），僅供參考。
+      </div>
+    </div>
+
+    <div class="section sec4">
+      <div class="section-head">4. 期貨市場：黃金</div>
+      <div class="scroll"><table>
+        <thead><tr><th>項目</th><th>今日值</th><th>昨日收盤值</th><th>今日漲跌</th><th>今日漲跌%</th><th>近三月最低點</th><th>vs低點漲跌</th><th>vs低點%</th></tr></thead>
+        <tbody class="mono"><tr><td>黃金期貨 GC=F（COMEX，近月）</td><td>3,615.10</td><td>3,651.40</td>
+  <td class="dn">-36.30</td><td class="dn">-0.99%</td>
+  <td>3,502.90</td><td class="up">+112.20</td><td class="up">+3.20%</td></tr></tbody>
+      </table></div>
+      <div class="scroll-hint">← 左右滑動可看完整欄位 →</div>
+      <div class="note">資料來源：Yahoo Finance GC=F（COMEX 黃金近月期貨，美股報價延遲約10分鐘），非黃金現貨 XAU/USD；兩者價格通常僅有小幅價差。</div>
+    </div>
+
+    <div class="note" style="border-radius:14px;border:1px solid var(--border);background:#fff;margin-bottom:26px;">
+      <strong>資料來源與交叉驗證說明：</strong><br>
+      1. 主要來源：Yahoo Finance（finance.yahoo.com）各幣別歷史資料頁，含每日 Open/High/Low/Close，查詢區間約 2026-08-16～2026-11-24（約100日，涵蓋近三個月）。所有「今日值」「昨日收盤」「近三月最低點」均為直接讀取之歷史數值。<br>
+      2. 今日為平日（週二），「昨日收盤」採 2026-11-23（週一）之最終收盤值，無週末規則適用。<br>
+      3. 輔助來源：兆豐國際商業銀行牌告匯率（twrates.com 彙整），查詢時顯示為今日即時報價，用於區塊三買賣價與中價計算；其「昨日中間價」「近三月低點」為 USD/TWD 橋接估算值，詳見區塊三下方說明。雙來源 USD/TWD 交叉比對：Yahoo 即時 32.9370 vs 兆豐中價 32.9300，差異約 0.02%，通過 &lt;0.5% 門檻。<br>
+      4. 美元基準區塊之 USD/EUR、USD/AUD、USD/NZD 係以 EUR/USD、AUD/USD、NZD/USD 報價取倒數換算；其「近三月最低」取該貨幣對美元近三月最高點之倒數。<br>
+      5. USD/CNY 之歷史資料來源（Yahoo Finance CNY=X）多數交易日僅提供單一數值（Open=High=Low=Close），僅當日（即時）資料含完整區間；近三月最低點已連續維持 11-03 已定案之收盤值 6.6480 達四週，為此資料來源特性下的正常現象。<br>
+      6. <strong>黃金期貨（GC=F）昨日（11-23）大幅收高</strong>，收盤修正為 3,651.40（較本報表昨日所見之即時值 3,612.50 明顯上修），單日實際漲幅達 +3.87%（相對上週五 11-20 的 3,515.40 收盤）；今日小幅回落 -0.99% 至 3,615.10。近三月最低點仍維持 11-20 的 3,502.90，未再創新低。<br>
+      7. USD/AUD（AUD/USD 倒數）昨日（11-23）收盤同樣由即時值 0.6656 修正為最終收盤 0.6641，符合既有「即時數值於收盤定案後小幅修正」之規律；今日續跌至 0.6632。
+    </div>
+
+    <div class="section sec-line">
+      <div class="section-head">LINE 訊息純文字</div>
+      <div class="line-box">
+        <div class="line-content">每日外匯市場主要貨幣動態資訊已產出（2026-11-24）。<br><br>【今日重點】<br>・美元指數：104.24（今日 -0.08%／距三月低點 +5.76%）<br>・美元/台幣：32.9370（今日 -0.05%／距三月低點 +4.84%）<br>・美元/日圓：159.3360（今日 +0.25%／距三月低點 +4.21%）<br>・黃金期貨 GC=F：3,615.10 USD（今日 -0.99%／距三月低點 +3.20%）昨日大幅收高至3,651.40後今日小幅回落<br><br>【今日波動最大】<br>・黃金期貨 GC=F -0.99%<br>・USD/NZD +0.48%<br>・USD/EUR +0.46%<br><br>資料來源：Yahoo Finance、兆豐銀行牌告（twrates.com）等公開資料來源。<br>兆豐銀行「昨收」「近三月低點」欄位為 USD/TWD 橋接估算值，非官方歷史牌告。<br>本報表由 AI 自動產出，僅供參考。</div>
+      </div>
+    </div>
+
+    <div class="footer">本報表由 AI 自動產出，僅供參考</div>
+  </div>
+</body>
+</html>
